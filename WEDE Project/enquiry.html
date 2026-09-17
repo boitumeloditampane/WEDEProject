@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale1.0">
+  <title>Burkleigh House Bakery, Enquiry</title>
+</head>
+<body>
+<header>
+  <h1>Burkleigh House Bakery</h1>
+  <nav>
+    <u1>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About.html"> Above us</a></li>
+      <li><a href="Products.html">Products</a></li>
+      <li><a href="enquiry.html">Enquiry</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </u1>
+  </nav>
+</header>
+
+<main>
+
+  <h2>Wholesale &amp; Custom Order Enquiries</h2>
+  <p>
+    Interested in stocking Burkleigh House Bakery products, or need a bulk
+    or custom order? Fill in the form below and we'll get back to you.
+  </p>
+
+  <!-- Form has no working submit logic yet — that's added with JavaScript in Part 3 -->
+  <form>
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone">
+
+    <label for="enquiry-type">Type of Enquiry</label>
+    <select id="enquiry-type" name="enquiry-type">
+      <option value="wholesale">Wholesale / Stockist Enquiry</option>
+      <option value="custom">Custom / Bulk Order</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send Enquiry</button>
+  </form>
+
+</main>
+
+<footer>
+  <p>323 Pine Ave, Ferndale, Randburg, Johannusburg</p>
+  <p> Tel: 011 886 8983 , Email: info@bhbakery.co.za</p>
+  <p>&copy; 2026 Burkleigh House Bakery</p>
+</footer>
+
+</body>
+</html>
