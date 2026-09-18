@@ -6,242 +6,243 @@
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
  * Kroc Camen, and the H5BP dev community and team.
  */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
-}
-
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
+*, *::before, *::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
-}
-
 /* ==========================================================================
-   Author's custom styles
+   1. Base styles: opinionated defaults
    ========================================================================== */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden,
-[hidden] {
-  display: none !important;
+:root {
+  /* Colour scheme, defined once so it is easy to change everywhere */
+  --colour-cream: #FBF3E7;
+  --colour-brown: #6B4226;
+  --colour-brown-dark: #4A2D19;
+  --colour-mustard: #D9A441;
+  --font-heading: "Playing Display",Georgia, serif;
+  --font-body: "Open sans", Ariel,sans-serif;
+  --colour-text: #000000;
 }
 
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--colour-text);
+  background-color: var(--colour-cream);
 }
 
-/*
- * Extends the .visually-hidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
+a {
+  color: var(--colour-brown);
+  text-decoration: none;
+}
 
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
+img {
+  /* Basic responsive-image technique: never overflow its container */
+  max-width: 100%;
   height: auto;
+  display: block;
+}
+
+/* =========================================================
+   2. TYPOGRAPHY
+   ========================================================= */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--colour-brown-dark);
+  line-height: 1.2;
+  margin-bottom: 0.6em;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.2rem; }
+
+p {
+  margin-bottom: 1em;
+  max-width: 65ch; /* keeps line length readable */
+}
+
+/* =========================================================
+   3. LAYOUT — header, nav, main container, footer
+   ========================================================= */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+header {
+  background-color: var(--colour-brown);
+  color: var(--colour-cream);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  color: var(--colour-cream);
+  font-size: 1.5rem;
   margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-  visibility: hidden;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
 }
 
-/*
- * Clearfix: contain floats
- *
- * The use of `table` rather than `block` is only necessary if using
- * `::before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
+nav a {
+  color: var(--colour-cream);
+  font-weight: 600;
 }
 
-.clearfix::after {
-  clear: both;
+nav a:hover,
+nav a:focus {
+  color: var(--colour-mustard);
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
 }
 
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+footer {
+  background-color: var(--colour-brown-dark);
+  color: var(--colour-cream);
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
 }
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
+footer p {
+  max-width: none;
+  margin-bottom: 0.3em;
+  font-size: 0.9rem;
+}
 
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
+/* =========================================================
+   4. VISUAL STYLES — cards, buttons, interactive states
+   ========================================================= */
+#highlights,
+#biscuits, #rusks, #pies, #honey {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Product/highlight sections laid out as a grid on desktop */
+#highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+a[href="enquiry.html"],
+button[type="submit"] {
+  color: var(--colour-cream);
+  color: var(--colour-brown-dark);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+a[href="enquiry.html"]:hover,
+button[type="submit"]:hover,
+a[href="enquiry.html"]:focus,
+button[type="submit"]:focus {
+  background-color: var(--colour-brown);
+  color: var(--colour-cream);
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   5. FORMS
+   ========================================================= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 500px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+label {
+  font-weight: 600;
+  margin-top: 0.6rem;
+}
+
+input, select, textarea {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--colour-mustard);
+  border-color: var(--colour-mustard);
+}
+
+button[type="submit"] {
+  margin-top: 1rem;
+  width: fit-content;
+}
+
+/* =========================================================
+   6. RESPONSIVE BREAKPOINTS
+   ========================================================= */
+
+/* Tablet: switch the two-column highlight/product grid to one column */
+@media (max-width: 768px) {
+  #highlights {
+    grid-template-columns: 1fr;
   }
 
-  a,
-  a:visited {
-    text-decoration: underline;
+  header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
+  nav ul {
+    margin-top: 0.8rem;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 }
 
+/* Mobile: smaller headings, tighter spacing, full-width buttons */
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1.1rem; }
+
+  main {
+    padding: 1.5rem 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  form {
+    padding: 1rem;
+  }
+}
