@@ -1,0 +1,17 @@
+{
+  "wholesale": {
+    "price": "Wholesale prices start from R25 per pack.",
+    "minimum": "The minimum order is 50 packs per product.",
+    "availability": "Orders are usually ready within 5 working days."
+  },
+  "custom": {
+    "price": "Custom and bulk orders are quoted per order, from R45 per pack.",
+    "minimum": "The minimum custom order is 20 packs.",
+    "availability": "Please allow 7 to 10 working days."
+  },
+  "other": {
+    "price": "Our team will send you a price once we understand your request.",
+    "minimum": "There is no minimum for general questions.",
+    "availability": "We will reply within 2 working days."
+  }
+}

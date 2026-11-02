@@ -2,62 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale1.0">
-  <title>Burkleigh House Bakery, Enquiry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wholesale &amp; Custom Order Enquiry | Burkleigh House Bakery</title>
+  <meta name="description" content="Enquire about stocking Burkleigh House Bakery biscuits, rusks, pies and honey, or place a custom bulk order. Get pricing and availability straight away.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
 <body>
+
 <header>
-  <h1>Burkleigh House Bakery</h1>
-  <nav>
-    <u1>
+  <p class="site-name">Burkleigh House Bakery</p>
+  <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav id="main-nav" aria-label="Main">
+    <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="About.html"> Above us</a></li>
+      <li><a href="About.html">About Us</a></li>
       <li><a href="Products.html">Products</a></li>
-      <li><a href="enquiry.html">Enquiry</a></li>
+      <li><a href="enquiry.html" aria-current="page">Enquiry</a></li>
       <li><a href="contact.html">Contact</a></li>
-    </u1>
+    </ul>
   </nav>
 </header>
 
 <main>
 
-  <h2>Wholesale &amp; Custom Order Enquiries</h2>
+  <h1>Wholesale &amp; Custom Order Enquiries</h1>
   <p>
     Interested in stocking Burkleigh House Bakery products, or need a bulk
-    or custom order? Fill in the form below and we'll get back to you.
+    or custom order? Fill in the form below,and we'll show you our pricing
+    and availability. See the <a href="Products.html">products page</a> for our full range.
   </p>
 
-  <!-- Form has no working submit logic yet — that's added with JavaScript in Part 3 -->
-  <form>
+  <!-- novalidate turns off the browser's own pop-ups so our messages from js/main.js show instead -->
+  <form id="enquiry-form" action="enquiry.html" method="post" novalidate>
 
     <label for="name">Full Name</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" autocomplete="name" required minlength="2"
+           data-validate data-label="Full name"
+           data-message="Please enter your full name."
+           aria-describedby="name-error">
+    <span class="error" id="name-error"></span>
 
     <label for="email">Email Address</label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email" autocomplete="email" required
+           data-validate data-label="Email"
+           data-message="Please enter your email address."
+           aria-describedby="email-error">
+    <span class="error" id="email-error"></span>
 
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" name="phone">
+    <label for="phone">Phone Number (optional)</label>
+    <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="011 886 8983"
+           data-validate data-label="Phone"
+           aria-describedby="phone-error">
+    <span class="error" id="phone-error"></span>
 
     <label for="enquiry-type">Type of Enquiry</label>
-    <select id="enquiry-type" name="enquiry-type">
+    <select id="enquiry-type" name="enquiry-type" required
+            data-validate data-label="Enquiry type"
+            data-message="Please choose a type of enquiry."
+            aria-describedby="enquiry-type-error">
+      <option value="">Select an enquiry type</option>
       <option value="wholesale">Wholesale / Stockist Enquiry</option>
       <option value="custom">Custom / Bulk Order</option>
       <option value="other">Other</option>
     </select>
+    <span class="error" id="enquiry-type-error"></span>
+
+    <fieldset id="products" data-validate data-label="Products of interest"
+              data-message="Please choose at least one product."
+              aria-describedby="products-error">
+      <legend>Products of interest</legend>
+      <label class="choice"><input type="checkbox" name="products" value="biscuits"> Handmade biscuits</label>
+      <label class="choice"><input type="checkbox" name="products" value="rusks"> Rusks</label>
+      <label class="choice"><input type="checkbox" name="products" value="pies"> Cocktail pies</label>
+      <label class="choice"><input type="checkbox" name="products" value="honey"> Seasonal honey</label>
+    </fieldset>
+    <span class="error" id="products-error"></span>
+
+    <fieldset id="contact-method" data-validate data-label="Preferred contact method"
+              data-message="Please choose how you would like us to reply."
+              aria-describedby="contact-method-error">
+      <legend>Preferred contact method</legend>
+      <label class="choice"><input type="radio" name="contact-method" value="email"> Email</label>
+      <label class="choice"><input type="radio" name="contact-method" value="phone"> Phone</label>
+    </fieldset>
+    <span class="error" id="contact-method-error"></span>
 
     <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+    <textarea id="message" name="message" rows="5" required minlength="10"
+              data-validate data-label="Message"
+              data-message="Please tell us a little about your enquiry."
+              aria-describedby="message-error"></textarea>
+    <span class="error" id="message-error"></span>
 
-    <button type="submit">Send Enquiry</button>
+    <button type="submit" class="btn">Send Enquiry</button>
   </form>
+
+  <!-- Shown by JavaScript after a valid submit; the form is hidden at that point -->
+  <section id="enquiry-response" class="form-response" tabindex="-1" hidden>
+    <h2>Thank you<span class="resp-name"></span>, we received your enquiry</h2>
+    <p class="resp-message"></p>
+    <h3>What you sent us</h3>
+    <dl class="resp-summary"></dl>
+    <button type="button" class="btn resp-reset">Send another enquiry</button>
+  </section>
+
+  <h2>Wholesale Questions</h2>
+  <div class="accordion">
+    <button type="button" class="acc-btn" aria-expanded="false">What is the minimum order?</button>
+    <div class="acc-panel" hidden><p>The minimum wholesale order is 50 packs per product.</p></div>
+
+    <button type="button" class="acc-btn" aria-expanded="false">How long does an order take?</button>
+    <div class="acc-panel" hidden><p>Most orders are ready within 5 working days. Large custom orders may take longer.</p></div>
+
+    <button type="button" class="acc-btn" aria-expanded="false">Do you supply honey all year?</button>
+    <div class="acc-panel" hidden><p>Our honey is seasonal and only available while stocks last.</p></div>
+  </div>
 
 </main>
 
 <footer>
-  <p>323 Pine Ave, Ferndale, Randburg, Johannusburg</p>
-  <p> Tel: 011 886 8983 , Email: info@bhbakery.co.za</p>
+  <p>323 Pine Ave, Ferndale, Randburg, Johannesburg</p>
+  <p>Tel: <a href="tel:+27118868983">011 886 8983</a>, Email: <a href="mailto:info@bhbakery.co.za">info@bhbakery.co.za</a></p>
+  <p>Follow us:
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a> |
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </p>
   <p>&copy; 2026 Burkleigh House Bakery</p>
 </footer>
 

@@ -1,8 +1,7 @@
 # Burkleigh House Bakery Website
 
-A responsive 5-page website built for Burkleigh House Bakery, a family-owned
-bakery in Ferndale, Randburg, Johannesburg, as part of a web development
-Proof of Evidence (PoE) assignment.
+Website for **Burkleigh House Bakery**, a family-run bakery in Ferndale, Randburg, Johannesburg. It supplies handmade biscuits, rusks, cocktail pies and seasonal honey to retail stores. Built for the Web Development (Introduction) module, WEDES020, Parts 1 to 3.
+
 
 ## Student Information
 
@@ -10,147 +9,117 @@ Proof of Evidence (PoE) assignment.
 - **Student Number:** ST10482828
 - **Subject:** Web Development (introduction)
 
-## Project Overview
+## Pages
 
-This project builds a functional, responsive website for Burkleigh House
-Bakery, a real small business with over 25 years of commercial baking
-experience, supplying more than 70 retail stores across South Africa. The
-site is being developed in three parts: HTML structure (Part 1), CSS styling
-and responsive design (Part 2), and JavaScript functionality (Part 3, not
-yet started).
+| Page | Purpose |
+|------|---------|
+| `index.html` | Home page with hero section and links to the rest of the site |
+| `about.html` | The bakery's story, mission and location |
+| `products.html` | Product listing with search, category filter and sorting, plus a gallery with a lightbox |
+| `enquiry.html` | Wholesale and custom order enquiry form that replies with pricing and availability, plus an FAQ accordion |
+| `contact.html` | Contact details, interactive map and a general message form that builds an email |
 
-## Website Goals and Objectives
+## Part 3 Features
 
-- Give the bakery a stronger first impression for retail buyers evaluating
-  it as a potential stockist.
-- Make it easy for local customers and small businesses to enquire about
-  bulk or custom orders (pies, rusks, biscuits, honey).
-- Tell the 25-year, family-owned story that currently isn't visible
-  anywhere online.
+**Interactive elements**
+- Mobile menu button that opens and closes the navigation on small screens.
+- Accordion of wholesale questions on the enquiry page.
+- CSS transitions (card hover, button colour) and a fade-in animation (accordion, lightbox, response panels).
 
-**Key performance indicators:** number of enquiry form submissions per
-month, average time on the products page, and growth in wholesale
-enquiries from businesses outside the current 70-store network.
+**Dynamic content**
+- The product cards on `products.html` are created with JavaScript from a list of products in `js/main.js`.
+- Search by word, filter by category and sort by name or price.
 
-## Key Features and Functionality
+**Gallery lightbox**
+- Clicking a gallery picture opens it larger. It closes with the X button, by clicking the dark background, or with the Escape key.
 
-- Homepage with hero section and calls to action
-- About page telling the bakery's 25-year history
-- Products page showcasing biscuits, rusks, cocktail pies and seasonal honey
-- Enquiry page with a wholesale/custom order form
-- Contact page with address, trading hours, and a contact form
-- Consistent navigation across all 5 pages
-- External stylesheet with a warm, bakery-themed colour palette
-- Responsive layout with breakpoints for desktop, tablet and mobile
+**Interactive map**
+- Leaflet with OpenStreetMap on the contact page, with a marker and popup for the bakery.
 
-## Sitemap
+**Forms and validation**
+- `enquiry.html`: text, email, phone, dropdown, checkboxes, radio buttons and a text area. After validation, the page uses `fetch()` (AJAX) to load `data/pricing.json` and shows a reply about cost, minimum order and availability based on the enquiry type.
+- `contact.html`: name, email, phone, type of message and message. After validation, the page builds an email (subject and body) addressed to `info@bhbakery.co.za`, and the visitor sends it with the "Open Email to Send" button.
+- JavaScript validation checks required fields, email format, South African phone format and minimum message length. Clear error messages appear under each field, and the first error receives focus.
+- Both forms have an `action` attribute and use `novalidate` so the custom messages are shown.
 
-```
-index.html      (Home)
-about.html      (About Us)
-products.html   (Products)
-enquiry.html    (Enquiry)
-contact.html    (Contact)
-```
+## SEO
 
-## Timeline and Milestones
+- A unique `<title>` and meta description on every page.
+- One `<h1>` per page, with `<h2>` and `<h3>` headings under it.
+- Descriptive alt text on all images.
+- Clean, lowercase page names and internal links between pages.
+- Mobile-friendly: viewport meta tag and responsive CSS.
+- Local SEO: `Bakery` structured data (schema.org) with the Randburg address, phone number and trading hours on the contact page.
+- Open Graph tags on the home page.
+- `robots.txt` and `sitemap.xml` in the root folder.
+- Off-page: social media links in the footer. Backlinks would come from listing the bakery in local business directories and from the retail partners' websites.
 
-- **Part 1** (HTML foundation): proposal approval, sitemap, file structure,
-  static HTML for all 5 pages.
-- **Part 2** (CSS styling): external stylesheet, typography, layout,
-  responsive breakpoints.
+## Page Speed and Security
 
----
+- Scripts use `defer` and below-the-fold images use `loading="lazy"`.
+- Images have `width` and `height` set so the page does not jump while loading.
+- External links use `rel="noopener noreferrer"`.
+- JavaScript uses `textContent` (not `innerHTML`) for anything a visitor types.
+- GitHub Pages serves the site over HTTPS.
 
-## Part 1 Details
+## Responsive Testing
 
-Built the semantic HTML structure for all 5 pages (`header`, `nav`, `main`,
-`footer`), a consistent navigation menu linking all pages, and placeholder
-content sourced from research into the real Burkleigh House Bakery. File
-structure set up with `css/`, `js/`, and `images/` folders per the project
-sitemap.
+Tested with the browser developer tools (device mode) at three sizes.
 
-**Feedback from Part 1:** N/A — feedback not yet received at time of Part 2
-submission.
+| Device | Width | Screenshot |
+|--------|-------|-----------|
+| Desktop | 1280px | [add screenshot] |
+| Tablet | 768px | [add screenshot] |
+| Mobile | 375px | [add screenshot] |
 
-## Part 2 Details
+## Notes
 
-Added an external stylesheet (`css/style.css`) linked to all 5 HTML pages.
-
-- **Base styles:** CSS reset, site-wide font family, font size, and colour
-  scheme set via CSS custom properties (`:root` variables).
-- **Typography:** heading and body font families, consistent heading
-  sizes, readable line length and line height.
-- **Layout:** Flexbox used for the header/navigation bar and form fields;
-  CSS Grid used for the two-column highlights/product sections on desktop.
-- **Visual styles:** box shadows and rounded corners on cards and forms;
-  `:hover`, `:focus`, and `:active` pseudo-classes on links and buttons.
-- **Responsive design:** two breakpoints implemented using media queries
-  (768px for tablet, 480px for mobile). At each breakpoint, the multi-column
-  layout collapses to a single column, the navigation stacks vertically,
-  and heading font sizes reduce. Images use `max-width: 100%` so they scale
-  within their containers at any screen size.
-
-**Testing:** the site was tested using Chrome DevTools' device toolbar
-across desktop, tablet, and mobile viewport sizes. Screenshot evidence
-below.
-
-### Screenshot Evidence
-
-*(Insert desktop, tablet, and mobile screenshots here, taken from Chrome
-DevTools' responsive mode.)*
-
-- Desktop: `[insert screenshot]`
-- Tablet: `[insert screenshot]`
-- Mobile: `[insert screenshot]`
-
----
+- The product names, prices and the figures in `data/pricing.json` are made up for this assignment.
+- The forms have no server. The enquiry reply comes from a local file and the contact form uses the visitor's own email app, so no message is sent automatically.
 
 ## Changelog
 
-### Part 1
-- Created initial file structure (`css/`, `js/`, `images/` folders).
-- Built `index.html`, `about.html`, `products.html`, `enquiry.html`,
-  `contact.html` with semantic HTML structure.
-- Implemented consistent navigation across all 5 pages.
-- Added enquiry and contact forms (non-functional, structure only).
+### Part 3: changes made from Part 2 feedback
 
-### Part 2
-- Created `css/style.css` and linked it to all 5 HTML pages.
-- Implemented CSS reset and base site-wide styles.
-- Added typography styling for headings and body text.
-- Implemented Flexbox layout for header/navigation and forms.
-- Implemented CSS Grid layout for homepage highlights and product cards.
-- Added visual styling: box shadows, rounded corners, hover/focus/active
-  states on links and buttons.
-- Implemented responsive breakpoints at 768px and 480px for tablet and
-  mobile layouts.
-- Tested site across desktop, tablet, and mobile viewports using Chrome
-  DevTools.
+- **Navigation markup:** replaced the invalid `<u1>` element with `<ul>` on all five pages (opening and closing tags), so the navigation styles now apply.
+- **Viewport meta tag:** corrected `viewpoint` to `viewport` on the home and products pages, and fixed `intitial-scale` (home) and `initial-scale1.0` (enquiry, missing `=`). Every page now uses the same meta tag, so the responsive design works on mobile.
+- **Navigation label:** changed "Above us" to "About Us" on all pages.
+- **404 page:** removed the 404 page and all links to it.
 
----
+### Part 3: other fixes I found myself
+
+- Changed `About.html` and `Products.html` links to lowercase so they match the file names (links are case-sensitive on GitHub Pages).
+- Replaced the home page call-to-action selector `a[href="enquiry.html"]` with a `.btn` class, because it was also changing the Enquiry link in the navigation.
+- Removed a duplicate `color` property in the button CSS and gave buttons a background colour.
+- Fixed the fonts: "Playing Display" is now "Playfair Display", "Ariel" is now "Arial", and both fonts are now loaded from Google Fonts.
+- Fixed spelling: "Misson", "Johannusburg", "falvours", "Where we're Based".
+- Changed the site name in the header from an `<h1>` to a paragraph so each page has a single `<h1>`.
+- Added `aria-current="page"` and a highlight on the current page link.
+- Added `:focus-visible` outlines, and a rule that stops animations for people who turn them off.
+
+### Part 3: new features
+
+- Added `js/main.js` with the mobile menu, accordion, product search/filter/sort, lightbox, form validation, AJAX enquiry reply, contact email builder and Leaflet map.
+- Added `data/pricing.json` for the enquiry reply.
+- Rebuilt the enquiry form with checkboxes, radio buttons, a dropdown with placeholder, labels, fieldsets and error messages.
+- Rebuilt the contact form with a "type of message" dropdown and an email builder.
+- Replaced the map placeholder with an interactive Leaflet map.
+- Added the gallery and lightbox, the FAQ accordion and the product listing to the products and enquiry pages.
+- Added meta descriptions, Open Graph tags, structured data, `robots.txt` and `sitemap.xml`.
+- Added telephone and email links and social media links to the footer.
+- Updated this README with Part 3 information, the changelog and references.
 
 ## References
 
-BH Bakery (2026) *BH Bakery — Sweet. Simple. Satisfying.* Available at:
-https://www.bhbakery.co.za (Accessed: 13 September 2026).
+Fonts and code libraries:
 
-What's On In Joburg (2024) *Independent Bakeries to Spoil Yourself!*
-Available at: https://whatsoninjoburg.com/independent-bakeries-spoil/
-(Accessed: 13 September 2026).
+- Agafonkin, V. (2023) *Leaflet: an open-source JavaScript library for interactive maps*. Available at: https://leafletjs.com (Accessed: [add date]).
+- Google (2026) *Google Fonts: Open Sans and Playfair Display*. Available at: https://fonts.google.com (Accessed: [add date]).
+- HTML5 Boilerplate (2020) *HTML5 Boilerplate v9.0.1*. Available at: https://html5boilerplate.com (Accessed: [add date]).
+- OpenStreetMap contributors (2026) *OpenStreetMap*. Available at: https://www.openstreetmap.org/copyright (Accessed: [add date]).
+- Schema.org (2026) *Bakery*. Available at: https://schema.org/Bakery (Accessed: [add date]).
 
-Raw Honey Guide (n.d.) *Seasonal Honey Varieties.* Available at:
-https://rawhoneyguide.com/images/blog/sections/seasonal-honey-varieties.webp
-(Accessed: 18 September 2026).
-
-Supreme Flour (2016) *Old-Fashioned Buttermilk Rusks.* Available at:
-https://supremeflour.co.za/wp-content/uploads/2016/06/OLD-FASHIONED-BUTTERMILK-RUSKS5221.jpg
-(Accessed: 18 September 2026).
-
-Seafood Room (2025) *Scones Recipe.* Available at:
-https://seafoodroom.hk/wp-content/uploads/2025/01/scones-recipe-1736149249.jpg
-(Accessed: 18 September 2026).
-
-Bing Images (2026) *Image search result: cocktail pies.* Available at:
-https://tse4.mm.bing.net/th/id/OIP.vuEKl1x1I59t7wE35_NNLgHaHa
-(Accessed: 18 September 2026).
+- Seafood Room (n.d.) *Scones recipe* [Image]. Available at: https://seafoodroom.hk/wp-content/uploads/2025/01/scones-recipe-1736149249.jpg (Accessed: [add date]).
+- Supreme Flour (2016) *Old-fashioned buttermilk rusks* [Image]. Available at: https://supremeflour.co.za/wp-content/uploads/2016/06/OLD-FASHIONED-BUTTERMILK-RUSKS5221.jpg (Accessed: [add date]).
+- Raw Honey Guide (n.d.) *Seasonal honey varieties* [Image]. Available at: https://rawhoneyguide.com/images/blog/sections/seasonal-honey-varieties.webp (Accessed: [add date]).
+- [Add the original source of the cocktail pies image and the Wix hero image, then the date accessed.]

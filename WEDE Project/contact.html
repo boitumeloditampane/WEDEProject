@@ -3,66 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Burkleigh House Bakery, Contact</title>
+  <title>Contact Us | Burkleigh House Bakery, Ferndale, Randburg</title>
+  <meta name="description" content="Contact Burkleigh House Bakery in Ferndale, Randburg. Find our address, phone number, trading hours and map, or send us a message.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <!-- Local SEO: tells search engines about the business -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Bakery",
+      "name": "Burkleigh House Bakery",
+      "telephone": "+27118868983",
+      "email": "info@bhbakery.co.za",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "323 Pine Ave, Ferndale",
+        "addressLocality": "Randburg",
+        "addressRegion": "Gauteng",
+        "addressCountry": "ZA"
+      },
+      "openingHours": "Mo-Fr 08:00-16:00"
+    }
+  </script>
 </head>
 <body>
 
 <header>
-  <h1>Burkleigh House Bakery</h1>
-  <nav>
-    <u1>
+  <p class="site-name">Burkleigh House Bakery</p>
+  <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav id="main-nav" aria-label="Main">
+    <ul>
       <li><a href="index.html">Home</a></li>
-      <li><a href="About.html"> Above us</a></li>
+      <li><a href="About.html">About Us</a></li>
       <li><a href="Products.html">Products</a></li>
       <li><a href="enquiry.html">Enquiry</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </u1>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
   </nav>
 </header>
 
 <main>
 
-  <h2>Get In Touch</h2>
+  <h1>Get In Touch</h1>
 
   <section id="contact-details">
-    <h3>Bakery</h3>
+    <h2>Visit or Call Us</h2>
     <p>323 Pine Ave, Ferndale, Randburg, Johannesburg</p>
-    <p>Tel: 011 886 8983</p>
-    <p>Email: info@bhbakery.co.za</p>
+    <p>Tel: <a href="tel:+27118868983">011 886 8983</a></p>
+    <p>Email: <a href="mailto:info@bhbakery.co.za">info@bhbakery.co.za</a></p>
     <p>Trading Hours: Monday &ndash; Friday, 8am &ndash; 4pm</p>
+    <p>Looking to stock our products? Use the <a href="enquiry.html">enquiry form</a> instead.</p>
   </section>
 
-
-  <section id="map">
-    <h3>Find Us</h3>
-    <p>[Map placeholder &mdash; embedded map to be added]</p>
+  <section id="find-us">
+    <h2>Find Us</h2>
+    <div id="map" role="region" aria-label="Map showing the location of Burkleigh House Bakery"></div>
   </section>
 
-  <section id="contact-form">
-    <h3>Send a Message</h3>
-    <form>
+  <section>
+    <h2>Send a Message</h2>
+
+    <!-- If JavaScript is off, the action below opens the visitor's email app -->
+    <form id="contact-form" action="mailto:info@bhbakery.co.za" method="post" enctype="text/plain" novalidate>
+
       <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" autocomplete="name" required minlength="2"
+             data-validate data-label="Full name"
+             data-message="Please enter your full name."
+             aria-describedby="name-error">
+      <span class="error" id="name-error"></span>
 
       <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" name="email" autocomplete="email" required
+             data-validate data-label="Email"
+             data-message="Please enter your email address."
+             aria-describedby="email-error">
+      <span class="error" id="email-error"></span>
+
+      <label for="phone">Phone Number (optional)</label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="011 886 8983"
+             data-validate data-label="Phone"
+             aria-describedby="phone-error">
+      <span class="error" id="phone-error"></span>
+
+      <label for="message-type">Type of Message</label>
+      <select id="message-type" name="message-type" required
+              data-validate data-label="Type of message"
+              data-message="Please choose a type of message."
+              aria-describedby="message-type-error">
+        <option value="">Select a type of message</option>
+        <option value="general">General question</option>
+        <option value="feedback">Feedback</option>
+        <option value="complaint">Complaint</option>
+        <option value="other">Other</option>
+      </select>
+      <span class="error" id="message-type-error"></span>
 
       <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+      <textarea id="message" name="message" rows="5" required minlength="10"
+                data-validate data-label="Message"
+                data-message="Please type your message."
+                aria-describedby="message-error"></textarea>
+      <span class="error" id="message-error"></span>
 
-      <button type="submit">Send Message</button>
+      <button type="submit" class="btn">Prepare Message</button>
     </form>
+
+    <section id="contact-response" class="form-response" tabindex="-1" hidden>
+      <h2>Your message is ready<span class="resp-name"></span></h2>
+      <p>Press the button below to open your email app with everything filled in, then press Send there. The email is addressed to info@bhbakery.co.za.</p>
+      <dl class="resp-summary"></dl>
+      <a id="email-link" class="btn" href="mailto:info@bhbakery.co.za">Open Email to Send</a>
+      <button type="button" class="btn resp-reset">Start Again</button>
+    </section>
   </section>
 
 </main>
 
 <footer>
-  <p>323 Pine Ave, Ferndale, Randburg, Johannusburg</p>
-  <p> Tel: 011 886 8983 , Email: info@bhbakery.co.za</p>
+  <p>323 Pine Ave, Ferndale, Randburg, Johannesburg</p>
+  <p>Tel: <a href="tel:+27118868983">011 886 8983</a>, Email: <a href="mailto:info@bhbakery.co.za">info@bhbakery.co.za</a></p>
+  <p>Follow us:
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a> |
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </p>
   <p>&copy; 2026 Burkleigh House Bakery</p>
 </footer>
-
 
 </body>
 </html>
